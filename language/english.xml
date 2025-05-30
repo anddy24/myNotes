@@ -1,4 +1,9 @@
 <strings>
     <s1>Hello, how are you?</s1>
     <notes>Notes</notes>
+    <todo>To-do</todo>
+    <calendar>Calendar</calendar>
+    <whiteboard>Whiteboard</whiteboard>
+    <private>Private</private>
+    <settings>Settings</settings>
 </strings>
