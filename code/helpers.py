@@ -1,4 +1,6 @@
 import xml.etree.ElementTree as ET  #pentru import fisiere de limba
+import json
+import os
 
 def load_language(language_code):
     path = f"language/{language_code}.xml"
@@ -22,3 +24,4 @@ def load_user_language():
             return settings.get("language", "english")
     except FileNotFoundError:
         return "english"
+    

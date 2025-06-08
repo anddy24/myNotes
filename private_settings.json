@@ -1,1 +1,5 @@
-{"email": "dog@gmail.com", "password": "miau"}
+{
+    "email": "dog@gmail.com",
+    "password": "miau",
+    "theme": "Dracula"
+}

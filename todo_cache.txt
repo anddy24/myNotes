@@ -1,1 +1,2 @@
-go walk the dog
+fix sup and sub scrpit
+make the font and font size work actually

@@ -3,9 +3,17 @@ import calendar
 from datetime import datetime
 
 class CalendarFrame(tk.Frame):
-    def __init__(self, master, strings, *args, **kwargs):
+    def __init__(self, master, strings, theme_manager, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
-        self.configure(bg="white")
+        self.theme_manager = theme_manager
+
+        self.configure(bg=self.theme_manager.get_color("background"))
+
+        self.theme_manager.subscribe(self)
+
+    def update_theme(self, theme):
+        bg = theme.get("background", "white")
+        self.configure(bg=bg)
 
         self.current_year = datetime.now().year
         self.current_month = datetime.now().month

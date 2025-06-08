@@ -1,10 +1,12 @@
 import tkinter as tk
 
 class WhiteboardFrame(tk.Frame):
-    def __init__(self, master, strings, *args, **kwargs):
+    def __init__(self, master, strings, theme_manager, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
+        self.theme_manager = theme_manager
+        self.configure(bg=self.theme_manager.get_color("background"))
 
-        self.canvas = tk.Canvas(self, bg="white")
+        self.canvas = tk.Canvas(self, bg=self.theme_manager.get_color("background"))
         self.canvas.pack(fill="both", expand=True)
 
         self.lines = []  # stores all lines

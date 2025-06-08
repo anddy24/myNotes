@@ -2,17 +2,19 @@ import tkinter as tk
 from tkinter import messagebox
 import json
 import os
-from notes import NotesFrame  # Reuse standard notes frame
+from notes import NotesFrame  
 
 SETTINGS_FILE = "private_settings.json"
 PRIVATE_NOTE_FILE = "private_note.txt"
 
 class PrivateFrame(tk.Frame):
-    def __init__(self, master, strings, *args, **kwargs):
+    def __init__(self, master, strings, theme_manager, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
         self.strings = strings
         self.master = master
-        self.configure(bg="white")
+        self.theme_manager = theme_manager
+
+        self.configure(bg=self.theme_manager.get_color("background"))
 
         self.password_prompt()
 
@@ -42,7 +44,7 @@ class PrivateFrame(tk.Frame):
         self.clear_widgets()
 
         # Reuse the NotesFrame, but store in a different file
-        self.notes = NotesFrame(self, self.strings, file_path=PRIVATE_NOTE_FILE)
+        self.notes = NotesFrame(self, self.strings, self.theme_manager, file_path=PRIVATE_NOTE_FILE)
         self.notes.pack(fill="both", expand=True)
 
     def clear_widgets(self):

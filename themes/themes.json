@@ -1,0 +1,28 @@
+{
+  "Dracula": {
+    "background": "#282A36",
+    "current_line": "#44475A",
+    "foreground": "#F8F8F2",
+    "comment": "#6272A4",
+    "accent1": "#8BE9FD",
+    "accent2": "#50FA7B",
+    "accenr3": "#FFB86C",
+    "accent4": "#FF79C6",
+    "accent5": "#BD93F9",
+    "accent6": "#FF5555",
+    "accent7": "#F1FA8C"
+  },
+  "Monokai": {
+    "background": "#272822",
+    "current_line": "#3E3D32",
+    "foreground": "#F8F8F2",
+    "comment": "#75715E",
+    "accent1": "#66D9EF",
+    "accent2": "#A6E22E",
+    "accent3": "#FD971F",
+    "accent4": "#F92672",
+    "accent5": "#AE81FF",
+    "accent6": "#F92672",
+    "accent7": "#E6DB74"
+  }
+}

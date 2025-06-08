@@ -1,31 +1,4 @@
 {
-  "content": "my name is andrei",
-  "tags": [
-    {
-      "tag": "sel",
-      "start": "1.0",
-      "end": "1.17"
-    },
-    {
-      "tag": "bold",
-      "start": "1.3",
-      "end": "1.6"
-    },
-    {
-      "tag": "bold",
-      "start": "1.11",
-      "end": "1.17"
-    },
-    {
-      "tag": "italic",
-      "start": "1.5",
-      "end": "1.17"
-    },
-    {
-      "tag": "color_#d969d9",
-      "start": "1.0",
-      "end": "1.17"
-    }
-  ],
-  "font_size": 33
+  "content": "ok guys so basically what we have so far is good enough.\n",
+  "tags": []
 }

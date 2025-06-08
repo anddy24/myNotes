@@ -1,34 +1,51 @@
 import tkinter as tk
+from PIL import Image, ImageTk
 
-btn_width = 20
-btn_height = 2
+
+btn_width = 140
+btn_height = 50
 
 class Dashboard(tk.Frame):
-    def __init__(self, master, strings, show_frame_callback, *args, **kwargs):
+    def __init__(self, master, strings, show_frame_callback, theme_manager, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
-        self.configure(width=300, bg="lightgray")
+        self.theme_manager = theme_manager
         self.show_frame = show_frame_callback
+        self.buttons = []  # Store references to buttons for theme updates
 
-        button = tk.Button(self, text=strings["notes"], width=btn_width, height=btn_height,
-                           command=lambda: self.show_frame("notes"))
-        button.grid(row=0, column=0)
+        self.configure(width=300, bg=self.theme_manager.get_color("current_line"))
+        self.theme_manager.subscribe(self)
 
-        button = tk.Button(self, text=strings["todo"], width=btn_width, height=btn_height,
-                           command=lambda: self.show_frame("todo"))
-        button.grid(row=1, column=0)
+        icons = {
+            "notes": "sticky-note.png",
+            "todo": "list.png",
+            "calendar": "calendar.png",
+            "whiteboard": "whiteboard.png",
+            "private": "data-security.png",
+            "settings": "cogwheel.png"
+        }
 
-        button = tk.Button(self, text=strings["calendar"], width=btn_width, height=btn_height,
-                           command=lambda: self.show_frame("calendar"))
-        button.grid(row=2, column=0)
+        for i, key in enumerate(["notes", "todo", "calendar", "whiteboard", "private", "settings"]):
+            pil_icon = Image.open(f"icons/{icons[key]}")
+            pil_icon = pil_icon.resize((24, 24), Image.Resampling.LANCZOS)
+            tk_icon = ImageTk.PhotoImage(pil_icon)
 
-        button = tk.Button(self, text=strings["whiteboard"], width=btn_width, height=btn_height,
-                           command=lambda: self.show_frame("whiteboard"))
-        button.grid(row=3, column=0)
+            btn = tk.Button(self,
+                            text=strings[key],
+                            width=btn_width,
+                            height=btn_height,
+                            bg=self.theme_manager.get_color("current_line"),
+                            fg=self.theme_manager.get_color("foreground"),
+                            image=tk_icon,
+                            compound="left",
+                            command=lambda k=key: self.show_frame(k))
+            btn.image = tk_icon
+            btn.grid(row=i, column=0)
+            self.buttons.append(btn)
 
-        button = tk.Button(self, text=strings["private"], width=btn_width, height=btn_height,
-                           command=lambda: self.show_frame("private"))
-        button.grid(row=4, column=0)
+    def update_theme(self, theme):
+        bg = theme.get("current_line", "#FFFFFF")
+        fg = theme.get("foreground", "#000000")
 
-        button = tk.Button(self, text=strings["settings"], width=btn_width, height=btn_height,
-                           command=lambda: self.show_frame("settings"))
-        button.grid(row=5, column=0)
+        self.configure(bg=bg)
+        for btn in self.buttons:
+            btn.configure(bg=bg, fg=fg)
