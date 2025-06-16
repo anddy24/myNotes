@@ -1,0 +1,19 @@
+[project]
+name = "myNotes"
+version = "0.1.0"
+description = "myNotes - a little app for taking notes in a working environment with the posibilty to view your work schedule sync'd from a database, also cross-platform"
+authors = [{ name="Cheptene Andrei", email="cheptenea3@gmail.com" }]
+readme = "README.md"
+license = {text = "MIT"}
+dependencies = [
+    "python-docx",
+    "reportlab",
+    "customtkinter"
+]
+
+[project.scripts]
+myapp = "myapp.main:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

@@ -22,6 +22,7 @@ theme_manager = ThemeManager()
 root = tk.Tk()
 root.overrideredirect(True)
 root.title("myNotes")
+root.iconbitmap("icons/icon.ico")
 root.geometry("1280x720")
 root.configure(bg=theme_manager.get_color("background"))
 #dictionary for storing frames
@@ -89,13 +90,11 @@ def show_frame(name):
     frame.grid(row=0, column=0, sticky="nsew")
     content_frames[name] = frame
 
-
+content = tk.Frame(main_frame, bg="white")
+content.pack(side="right", fill="both", expand=True)
 
 sidebar = Dashboard(main_frame, strings, show_frame, theme_manager)
 sidebar.pack(side="left", fill="y")
-
-content = tk.Frame(main_frame, bg="white")
-content.pack(side="right", fill="both", expand=True)
 
 #grid black magic
 content.grid_rowconfigure(0, weight=1)

@@ -1,0 +1,39 @@
+{
+  "schedules_by_week": {
+    "2025-06-02": {      
+      "Monday": [
+        { "start": 9, "end": 17, "label": "Work" }
+      ],
+      "Tuesday": [
+        { "start": 10, "end": 12, "label": "Team Meeting" },
+        { "start": 13, "end": 17, "label": "Project Work" }
+      ],
+      "Wednesday": [],
+      "Thursday": [
+        { "start": 8, "end": 11, "label": "Focus Time" }
+      ],
+      "Friday": [
+        { "start": 9, "end": 15, "label": "Support Tasks" }
+      ],
+      "Saturday": [],
+      "Sunday": []
+    },
+    "2025-06-09": {     
+      "Monday": [
+        { "start": 8, "end": 16, "label": "Work" }
+      ],
+      "Tuesday": [
+        { "start": 10, "end": 12, "label": "Client Meeting" }
+      ],
+      "Wednesday": [
+        { "start": 14, "end": 18, "label": "Training" }
+      ],
+      "Thursday": [],
+      "Friday": [
+        { "start": 9, "end": 12, "label": "Reports" }
+      ],
+      "Saturday": [],
+      "Sunday": []
+    }
+  }
+}
