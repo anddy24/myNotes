@@ -4,9 +4,12 @@ import customtkinter as ctk
 
 CACHE_FILE = "todo_cache.txt"
 
+
+
 class TodoFrame(tk.Frame):
     def __init__(self, master, strings, theme_manager, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
+        self.strings = strings
         self.theme_manager = theme_manager
         self.configure(bg=self.theme_manager.get_color("background"))
 
@@ -19,11 +22,11 @@ class TodoFrame(tk.Frame):
         button_frame = tk.Frame(self, bg=self.theme_manager.get_color("background"))
         button_frame.pack(fill="x", padx=10, pady=5)
 
-        self.add_button = ctk.CTkButton(button_frame, text="Add", corner_radius=10, command=self.add_task,
+        self.add_button = ctk.CTkButton(button_frame, text=self.strings.get("add", "Add"), corner_radius=10, command=self.add_task,
                                         fg_color=self.theme_manager.get_color("comment"))
         self.add_button.grid(row=0, column=0, sticky="w")
 
-        self.delete_button = ctk.CTkButton(button_frame, text="Delete Completed", corner_radius=10, command=self.delete_completed,
+        self.delete_button = ctk.CTkButton(button_frame, text=self.strings.get("del", "Delete completed"), corner_radius=10, command=self.delete_completed,
                                            fg_color=self.theme_manager.get_color("comment"))
         self.delete_button.grid(row=0, column=1, sticky="e")
 

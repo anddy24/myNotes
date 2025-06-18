@@ -2,8 +2,10 @@ import tkinter as tk
 from tkinter import messagebox
 import json
 import os
+from helpers import load_language
+import sys
 
-SETTINGS_FILE = "private_settings.json"
+SETTINGS_FILE = "settings/settings.json"
 THEME_FILE = "themes/themes.json"
 
 class ThemeManager:
@@ -66,6 +68,8 @@ class ThemeManager:
     def get_color(self, key):
         return self.active_theme.get(key, "#FFFFFF")
 
+
+
 class SettingsFrame(tk.Frame):
     def __init__(self, master, strings, theme_manager, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
@@ -73,6 +77,20 @@ class SettingsFrame(tk.Frame):
         self.theme_manager = theme_manager
         self.theme_manager.subscribe(self)
         self.configure(bg=self.theme_manager.get_color("background"))
+        self.settings = self.load_settings()
+
+        self.language_files = {
+            "english": "english",
+            "romanian": "romanian",
+            "russian": "russian",
+            "chinese": "chinese",
+            "french": "french",
+            "german": "german",
+            "italian": "italian",
+            "japanese": "japanese",
+            "korean": "korean",
+            "spanish": "spanish"
+        }
         
         self.current_theme = tk.StringVar()
         self.create_widgets()
@@ -80,18 +98,73 @@ class SettingsFrame(tk.Frame):
     def create_widgets(self):
         # Setup private button
         setup_btn = tk.Button(self, text=self.strings.get("setup_private", "Set up Private Notes"),
-                              command=self.open_setup_window, bg=self.theme_manager.get_color("button_bg"))
-        setup_btn.pack(pady=20)
+                            command=self.open_setup_window, bd=0, width=40, height=2,
+                            fg=self.theme_manager.get_color("foreground"),
+                            bg=self.theme_manager.get_color("comment"))
+        setup_btn.grid(row=0, column=0, columnspan=2, pady=20, padx=20)
 
-        # Theme dropdown
-        tk.Label(self, text="Select Theme:", bg=self.theme_manager.get_color("background"), 
-                 fg=self.theme_manager.get_color("foreground")).pack()
+        # Theme label and dropdown
+        tk.Label(self, text=self.strings.get("s_theme", "Select Theme:"), bg=self.theme_manager.get_color("background"),
+                fg=self.theme_manager.get_color("foreground")).grid(row=1, column=0, sticky="e", padx=5, pady=5)
 
         self.theme_options = self.get_available_themes()
-        self.current_theme.set("Monokai")
+        self.current_theme.set("Dracula")
 
         theme_menu = tk.OptionMenu(self, self.current_theme, *self.theme_options, command=self.apply_theme)
-        theme_menu.pack(pady=10)
+        theme_menu.config(bg=self.theme_manager.get_color("current_line"), bd=0, width=10, height=2,
+                        fg=self.theme_manager.get_color("foreground"))
+        theme_menu.grid(row=1, column=1, sticky="w", padx=5, pady=5)
+
+        # Language label and dropdown
+        tk.Label(self, text=self.strings.get("s_lang","Select Language:"), bg=self.theme_manager.get_color("background"),
+                fg=self.theme_manager.get_color("foreground")).grid(row=2, column=0, sticky="e", padx=5, pady=5)
+
+        self.current_language = tk.StringVar()
+        default_lang = list(self.language_files.keys())[0]
+        self.current_language.set(default_lang)
+
+        language_menu = tk.OptionMenu(self, self.current_language, *self.language_files.keys(), command=self.apply_language)
+        language_menu.config(bg=self.theme_manager.get_color("current_line"), bd=0, width=10, height=2,
+                            fg=self.theme_manager.get_color("foreground"))
+        language_menu.grid(row=2, column=1, sticky="w", padx=5, pady=5)
+
+        # Save button
+        save_btn = tk.Button(self, text=self.strings.get("sclose","Save Settings and Close App"),
+                            command=self.save_current_settings, bd=0, width=20, height=3,
+                            bg=self.theme_manager.get_color("comment"), fg=self.theme_manager.get_color("foreground"))
+        save_btn.grid(row=3, column=0, columnspan=2, pady=15)
+
+    def apply_language(self, selected_language):
+        # Load the language XML file path by language name
+        lang_file_path = self.language_files.get(selected_language)
+        if lang_file_path:
+            self.strings = load_language(lang_file_path)
+
+    def load_settings(self):
+            if os.path.exists(SETTINGS_FILE):
+                try:
+                    with open(SETTINGS_FILE, "r") as f:
+                        return json.load(f)
+                except json.JSONDecodeError:
+                    return {}
+            return {}
+    def save_current_settings(self):
+        selected_lang = self.current_language.get()
+        self.settings["language"] = selected_lang
+
+        selected_theme = self.current_theme.get()
+        self.settings["theme"] = selected_theme
+
+        self.save_settings(self.settings)
+        messagebox.showinfo("Success", "Settings have been saved.")
+
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
+
+    def save_settings(self, settings):
+        os.makedirs(os.path.dirname(SETTINGS_FILE), exist_ok=True)
+        with open(SETTINGS_FILE, "w") as f:
+            json.dump(settings, f, indent=4)
 
     def get_available_themes(self):
         if os.path.exists(THEME_FILE):

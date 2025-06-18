@@ -9,14 +9,13 @@ from settings import ThemeManager
 from private import PrivateFrame
 from titlebar import CustomTitleBar
 
-
 from helpers import load_language #progamer
-from helpers import load_user_language
+from helpers import get_selected_language
 from dashboard import Dashboard
 
 
-
-strings = load_language("english")
+selected_language = get_selected_language()
+strings = load_language(selected_language)
 theme_manager = ThemeManager()
 
 root = tk.Tk()

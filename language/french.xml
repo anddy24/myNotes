@@ -1,0 +1,16 @@
+<strings>
+    <notes>Notes</notes>
+    <todo>Liste de tâches</todo>
+    <calendar>Calendrier</calendar>
+    <whiteboard>Tableau blanc</whiteboard>
+    <private>Privé</private>
+    <settings>Paramètres</settings>
+    <add>Ajouter</add>
+    <del>Supprimer les tâches terminées</del>
+    <enter_password>Entrez le mot de passe :</enter_password>
+    <unlock>Déverrouiller</unlock>
+    <setup_private>Configurer les notes privées</setup_private>
+    <s_theme>Sélectionner le thème :</s_theme>
+    <s_lang>Sélectionner la langue :</s_lang>
+    <sclose>Enregistrer et fermer</sclose>
+</strings>

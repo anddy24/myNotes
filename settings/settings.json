@@ -1,4 +1,6 @@
 {
-    "language": "english"
-  }
-  
+    "language": "russian",
+    "theme": "Dracula",
+    "email": "dog@gmail.com",
+    "password": "miau"
+}

@@ -72,8 +72,6 @@ class NotesFrame(tk.Frame):
         font_underline = load_icon("icons/underline.png")
         font_bg = load_icon("icons/highlighter.png")
         font_color = load_icon("icons/text.png")
-        font_plus = load_icon("icons/superscript.png")
-        font_minus = load_icon("icons/subscript.png")
         save = load_icon("icons/save.png")
         export = load_icon("icons/export.png")
 
@@ -116,23 +114,6 @@ class NotesFrame(tk.Frame):
         btn_underline.pack(side="left", padx=6)
         apply_hover_effect(btn_underline, hover_bg=self.theme_manager.get_color("current_line"))
 
-        # Superscript
-        btn_sup = tk.Button(toolbar, image=font_plus, bg=self.theme_manager.get_color("background"),
-                            fg=self.theme_manager.get_color("foreground"), command=self.apply_superscript,
-                            bd=0, highlightthickness=0)
-        btn_sup.image = font_plus
-        btn_sup.pack(side="left", padx=6)
-        apply_hover_effect(btn_sup, hover_bg=self.theme_manager.get_color("current_line"))
-        
-
-        # Subscript
-        btn_sub = tk.Button(toolbar, image=font_minus, bg=self.theme_manager.get_color("background"),
-                            fg=self.theme_manager.get_color("foreground"), command=self.apply_subscript,
-                            bd=0, highlightthickness=0)
-        btn_sub.image = font_minus
-        btn_sub.pack(side="left", padx=6)
-        apply_hover_effect(btn_sub, hover_bg=self.theme_manager.get_color("current_line"))
-
         # Font color
         btn_color = tk.Button(toolbar, image=font_color, bg=self.theme_manager.get_color("background"),
                             fg=self.theme_manager.get_color("foreground"), command=self.choose_color,
@@ -171,7 +152,9 @@ class NotesFrame(tk.Frame):
         self.text.pack(fill="both", expand=True)
         self.text.configure(bg=self.theme_manager.get_color("background"),
                             fg=self.theme_manager.get_color("foreground"))
-
+        
+        self.text.bind("<Control-z>", lambda e: self.undo)
+        self.text.bind("<Control-y>", lambda e: self.text.edit_redo())
         # Default style tags
         self.text.tag_configure("bold", font=font.Font(weight="bold"))
         self.text.tag_configure("italic", font=font.Font(slant="italic"))
@@ -369,25 +352,6 @@ class NotesFrame(tk.Frame):
             except json.JSONDecodeError:
                 return {}
         return {}
-    
-    def apply_superscript(self):
-        try:
-            start = self.text.index("sel.first")
-            end = self.text.index("sel.last")
-        except tk.TclError:
-            return
-        self.text.tag_add("superscript", start, end)
-    
-    def apply_subscript(self):
-        try:
-            start = self.text.index("sel.first")
-            end = self.text.index("sel.last")
-        except tk.TclError:
-            return
-        self.text.tag_add("subscript", start, end)
-
-
-
 
     def save_cache(self):
         current_text = self.text.get("1.0", "end-1c")
@@ -406,3 +370,13 @@ class NotesFrame(tk.Frame):
         self.cache["tags"] = tags_data
         with open(self.file_path, "w", encoding="utf-8") as f:
             json.dump(self.cache, f, indent=2)
+
+
+    def undo(self, event=None):
+        try:
+            pos = self.text.index("insert")
+            prev_pos = self.text.index(f"{pos} -1c")
+            self.text.delete(prev_pos, pos)
+        except tk.TclError:
+            pass  
+        return "break"

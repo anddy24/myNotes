@@ -1,0 +1,16 @@
+<strings>
+    <notes>Notas</notes>
+    <todo>Lista de tareas</todo>
+    <calendar>Calendario</calendar>
+    <whiteboard>Pizarra</whiteboard>
+    <private>Privado</private>
+    <settings>Configuración</settings>
+    <add>Agregar</add>
+    <del>Eliminar tareas completadas</del>
+    <enter_password>Introduce la contraseña:</enter_password>
+    <unlock>Desbloquear</unlock>
+    <setup_private>Configurar notas privadas</setup_private>
+    <s_theme>Seleccionar tema:</s_theme>
+    <s_lang>Seleccionar idioma:</s_lang>
+    <sclose>Guardar y cerrar</sclose>
+</strings>

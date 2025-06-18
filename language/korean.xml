@@ -1,0 +1,16 @@
+<strings>
+    <notes>노트</notes>
+    <todo>할 일 목록</todo>
+    <calendar>달력</calendar>
+    <whiteboard>화이트보드</whiteboard>
+    <private>비공개</private>
+    <settings>설정</settings>
+    <add>추가</add>
+    <del>완료된 작업 삭제</del>
+    <enter_password>비밀번호를 입력하세요:</enter_password>
+    <unlock>잠금 해제</unlock>
+    <setup_private>비공개 노트 설정</setup_private>
+    <s_theme>테마 선택:</s_theme>
+    <s_lang>언어 선택:</s_lang>
+    <sclose>저장하고 닫기</sclose>
+</strings>

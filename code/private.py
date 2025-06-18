@@ -21,10 +21,14 @@ class PrivateFrame(tk.Frame):
     def password_prompt(self):
         self.clear_widgets()
 
-        tk.Label(self, text=self.strings.get("enter_password", "Enter Password:"), bg="white").pack(pady=10)
-        self.pwd_entry = tk.Entry(self, show="*")
+        tk.Label(self, text=self.strings.get("enter_password", "Enter Password:"), 
+                 fg=self.theme_manager.get_color("foreground"),
+                 bg=self.theme_manager.get_color("background")).pack(pady=10)
+        self.pwd_entry = tk.Entry(self, show="*", bg=self.theme_manager.get_color("current_line"), fg=self.theme_manager.get_color("foreground"))
         self.pwd_entry.pack()
-        tk.Button(self, text="Unlock", command=self.verify_password).pack(pady=10)
+        tk.Button(self, text=self.strings.get("unlock", "Unlock"), command=self.verify_password, bd=0, width=30, height=2,
+                  fg=self.theme_manager.get_color("foreground"),
+                  bg=self.theme_manager.get_color("comment")).pack(pady=10)
 
     def verify_password(self):
         pwd = self.pwd_entry.get()

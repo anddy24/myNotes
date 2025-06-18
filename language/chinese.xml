@@ -1,0 +1,16 @@
+<strings>
+    <notes>笔记</notes>
+    <todo>待办事项</todo>
+    <calendar>日历</calendar>
+    <whiteboard>白板</whiteboard>
+    <private>私人</private>
+    <settings>设置</settings>
+    <add>添加</add>
+    <del>删除已完成任务</del>
+    <enter_password>输入密码：</enter_password>
+    <unlock>解锁</unlock>
+    <setup_private>设置私人笔记</setup_private>
+    <s_theme>选择主题：</s_theme>
+    <s_lang>选择语言：</s_lang>
+    <sclose>保存并关闭</sclose>
+</strings>

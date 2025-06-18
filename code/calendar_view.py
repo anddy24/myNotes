@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from calendar_render import WeeklyCalendar
 import json
 from PIL import Image, ImageTk
+import requests
 
 class CalendarFrame(tk.Frame):
     def __init__(self, master, strings, theme_manager, *args, **kwargs):
@@ -54,7 +55,21 @@ class CalendarFrame(tk.Frame):
         self.calendar_frame = tk.Frame(self, bg=self.theme_manager.get_color("background"))
         self.calendar_frame.pack(pady=10, padx=10, fill="both", expand=True)
 
-        self.schedule = self.load_schedule("calendar.json")
+        try:
+            response = requests.get("http://127.0.0.1:8000/schedule")
+            if response.status_code == 200:
+                data = response.json()
+                self.schedule = data.get("schedules_by_week", {})
+                self.all_schedules = self.schedule
+            else:
+                print(f"Failed to load schedule. Status code: {response.status_code}")
+                self.schedule = {}
+                self.all_schedules = {}
+        except Exception as e:
+            print(f"Error fetching schedule: {e}")
+            self.schedule = {}
+            self.all_schedules = {}
+
         self.update_calendar()
 
     def update_theme(self, theme):

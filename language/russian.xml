@@ -1,0 +1,16 @@
+<strings>
+    <notes>Заметки</notes>
+    <todo>Список дел</todo>
+    <calendar>Календарь</calendar>
+    <whiteboard>Доска</whiteboard>
+    <private>Личное</private>
+    <settings>Настройки</settings>
+    <add>Добавить</add>
+    <del>Удалить выполненные задачи</del>
+    <enter_password>Введите пароль:</enter_password>
+    <unlock>Разблокировать</unlock>
+    <setup_private>Настроить личные заметки</setup_private>
+    <s_theme>Выбрать тему:</s_theme>
+    <s_lang>Выбрать язык:</s_lang>
+    <sclose>Сохранить и закрыть</sclose>
+</strings>

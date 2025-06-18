@@ -1,0 +1,16 @@
+<strings>
+    <notes>Notițe</notes>
+    <todo>Listă de sarcini</todo>
+    <calendar>Calendar</calendar>
+    <whiteboard>Tablă de desen</whiteboard>
+    <private>Privat</private>
+    <settings>Setări</settings>
+    <add>Adaugă</add>
+    <del>Șterge sarcinile completate</del>
+    <enter_password>Introdu parola:</enter_password>
+    <unlock>Deblochează</unlock>
+    <setup_private>Configurează notele private</setup_private>
+    <s_theme>Selectează tema:</s_theme>
+    <s_lang>Selectează limba:</s_lang>
+    <sclose>Salvează și închide</sclose>
+</strings>

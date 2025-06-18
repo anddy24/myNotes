@@ -1,0 +1,16 @@
+<strings>
+    <notes>Note</notes>
+    <todo>Elenco attività</todo>
+    <calendar>Calendario</calendar>
+    <whiteboard>Lavagna</whiteboard>
+    <private>Privato</private>
+    <settings>Impostazioni</settings>
+    <add>Aggiungi</add>
+    <del>Elimina attività completate</del>
+    <enter_password>Inserisci la password:</enter_password>
+    <unlock>Sblocca</unlock>
+    <setup_private>Configura note private</setup_private>
+    <s_theme>Seleziona tema:</s_theme>
+    <s_lang>Seleziona lingua:</s_lang>
+    <sclose>Salva e chiudi</sclose>
+</strings>

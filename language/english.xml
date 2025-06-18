@@ -1,9 +1,16 @@
 <strings>
-    <s1>Hello, how are you?</s1>
     <notes>Notes</notes>
     <todo>To-do</todo>
     <calendar>Calendar</calendar>
     <whiteboard>Whiteboard</whiteboard>
     <private>Private</private>
     <settings>Settings</settings>
+    <add>Add</add>
+    <del>Delete completed task</del>
+    <enter_password>Enter password:</enter_password>
+    <unlock>Unlock</unlock>
+    <setup_private>Setup private notes</setup_private>
+    <s_theme>Select theme:</s_theme>
+    <s_lang>Select language:</s_lang>
+    <sclose>Save and Close</sclose>
 </strings>

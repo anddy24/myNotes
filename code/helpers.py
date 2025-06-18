@@ -13,15 +13,10 @@ def load_language(language_code):
     
     return strings
 
-
-
-import json
-
-def load_user_language():
+def get_selected_language():
     try:
-        with open("../settings/settings.json") as f:
+        with open("settings/settings.json", "r") as f:
             settings = json.load(f)
             return settings.get("language", "english")
-    except FileNotFoundError:
+    except:
         return "english"
-    
